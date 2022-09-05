@@ -1,6 +1,40 @@
 ﻿@using Models
 @model IEnumerable<User>
 
-@foreach(var user in @Model) {
+@*@foreach(var user in @Model) {
     <p>@user.Id : @user.Username : @user.Password</p>
-}
+}*@
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName(nameof(Models.User.Id))
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @*<label>@nameof(Models.User.Password)</label>*@
+                    @Html.Label(nameof(Models.User.Password))
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in @Model) {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(_ => user.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayFor(_ => user.Username)
+                    </th>
+                    <th>
+                        @user.Password
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
