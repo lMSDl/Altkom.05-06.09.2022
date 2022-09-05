@@ -1,10 +1,15 @@
 using Microsoft.Extensions.FileProviders;
+using Models;
+using Services.Bogus;
+using Services.Bogus.Fakers;
+using Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddTransient<EntityFaker<User>, UserFaker>();
+builder.Services.AddSingleton<ICrudService<User>, CrudService<User>>();
 
 
 var app = builder.Build();
