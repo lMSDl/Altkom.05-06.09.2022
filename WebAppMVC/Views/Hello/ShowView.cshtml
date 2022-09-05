@@ -1,0 +1,47 @@
+﻿
+
+
+<p>@@this.GetType().FullName</p>
+<p>@this.GetType().FullName</p>
+
+<p>abc@mail.com</p> 
+
+
+<p>Wynik to @(2 - 4)</p>
+<p>Wynik to @DateTime.Now.Year - 2000</p>
+<p>Wynik to @(DateTime.Now.Year - 2000)</p>
+
+@{
+    var number1 = 100;
+    var number2 = 150;
+}
+
+<p>@number1 - @number2 = @(number1-number2)</p>
+
+@{
+    void Show(string param)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            <p>param</p>
+        }
+    }
+
+    Show("hello!");
+}
+
+someText
+
+@if(DateTime.Now.Second % 2 == 0)
+{
+    @for (int i = 0; i < 3; i++)
+    {
+        //wyświetlenie jako zwykły tekst wewnątrze bloku z @
+        <text>anotherText</text>
+    }
+}
+else {
+    // @: - wyświetlenie jako zwykły tekst
+    @:someAnotherText
+
+}

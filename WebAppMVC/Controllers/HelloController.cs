@@ -21,5 +21,10 @@ namespace WebAppMVC.Controllers
         {
             return Content(HttpUtility.HtmlEncode($"Welcome {name}. Your age is ({age})"), "text/html");
         }
+
+        public IActionResult ShowView()
+        {
+            return View();
+        }
     }
 }
