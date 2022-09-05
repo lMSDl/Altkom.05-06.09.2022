@@ -12,6 +12,14 @@
     Layout = "_Layout2";
 }
 
+
+<div>
+    @using(Html.BeginForm("search", "users")) {
+        @:Phrase @Html.TextBox("phrase") <br>
+        <input type="submit" value="Search" class="btn" />
+    }
+</div>
+
 @*@foreach(var user in @Model) {
     <p>@user.Id : @user.Username : @user.Password</p>
 }*@

@@ -19,5 +19,18 @@ namespace WebAppMVC.Controllers
             //return View(_entities);
             return View(await _service.ReadAsync());
         }
+
+        public async Task<IActionResult> Search(string phrase)
+        {
+           var users = await _service.ReadAsync();
+
+            if(!string.IsNullOrEmpty(phrase))
+            {
+                var properties = typeof(User).GetProperties().Where(x => x.CanRead).ToList();
+                users = users.Where(x => properties.Any(xx => xx.GetValue(x)?.ToString()?.Contains(phrase) ?? false)).ToList();
+            }
+
+            return View(nameof(Index), users);
+        }
     }
 }
