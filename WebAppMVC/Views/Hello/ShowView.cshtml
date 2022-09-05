@@ -1,4 +1,4 @@
-﻿
+﻿@model string
 
 
 <p>@@this.GetType().FullName</p>
@@ -23,7 +23,7 @@
     {
         for (int i = 0; i < 10; i++)
         {
-            <p>param</p>
+    <p>param</p>
         }
     }
 
@@ -45,3 +45,18 @@ else {
     @:someAnotherText
 
 }
+
+@ViewData["param1"]
+@ViewData["param2"]
+@ViewData["param3"]
+
+@ViewBag.Trawa
+@ViewBag.Trawa2
+@ViewBag.Trawa3
+
+<!-- parametr przekazany do widoku za pomocą metody View -->
+@*coment*@
+@{
+    //
+}
+@Model?.ToUpper();

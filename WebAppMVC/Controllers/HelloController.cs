@@ -22,9 +22,19 @@ namespace WebAppMVC.Controllers
             return Content(HttpUtility.HtmlEncode($"Welcome {name}. Your age is ({age})"), "text/html");
         }
 
-        public IActionResult ShowView()
+        /*public IActionResult ShowView()
         {
             return View();
+        }*/
+
+        public IActionResult ShowView(string id)
+        {
+            ViewData["param1"] = $"ViewData{id}";
+            ViewData["param2"] = $"{id}ViewData";
+            ViewBag.Trawa = $"ViewBag{id}";
+            ViewBag.Trawa2 = $"{id}ViewBag";
+
+            return View((object)id);
         }
     }
 }
