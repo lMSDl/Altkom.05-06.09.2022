@@ -1,0 +1,1 @@
+﻿$(".printButton").on("click", () => { print(); });
