@@ -71,6 +71,17 @@ namespace WebAppMVC.Controllers
         //public async Task<IActionResult> EditUser(int id, [Bind] User user)
         public async Task<IActionResult> EditUser(int id, [Bind("Username", "Password")]User user)
         {
+            if((await _service.ReadAsync()).Any(x => x.Username == user.Username)) {
+                ModelState.AddModelError(nameof(user.Username), "Username must be unique");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                user.Id = id;
+                return View(nameof(Edit), user);
+            }
+
+
             if (id == 0)
             {
                 await _service.CreateAsync(user);
