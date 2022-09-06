@@ -13,6 +13,11 @@ namespace Services.Bogus
 
         private ICollection<T> Entities { get; }
 
+        public Task DeleteAsync(int id)
+        {
+            Entities.Remove(Entities.SingleOrDefault(x => x.Id == id)!);
+            return Task.CompletedTask;
+        }
 
         public Task<T?> ReadAsync(int id)
         {

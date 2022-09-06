@@ -34,5 +34,20 @@ namespace WebAppMVC.Controllers
 
             return View(nameof(Index), users);
         }
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await _service.ReadAsync(id);
+            if (user == null)
+                return NotFound();
+
+            return View(user);
+        }
+
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

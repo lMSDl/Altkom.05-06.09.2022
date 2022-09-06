@@ -25,10 +25,10 @@
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>Program.resx</DependentUpon>
 	  </Compile>
-	  <Compile Update="Resources\Views\Users\Index.Designer.cs">
+	  <Compile Update="Resources\Views\Users\_UserHeader.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Index.resx</DependentUpon>
+	    <DependentUpon>_UserHeader.resx</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -41,12 +41,12 @@
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Program.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\Views\Users\Index.pl-PL.resx">
+	  <EmbeddedResource Update="Resources\Views\Users\_UserHeader.pl-PL.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\Views\Users\Index.resx">
+	  <EmbeddedResource Update="Resources\Views\Users\_UserHeader.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Index.Designer.cs</LastGenOutput>
+	    <LastGenOutput>_UserHeader.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
 

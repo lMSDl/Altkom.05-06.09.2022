@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using Models
+
+@inject IStringLocalizer<Program> StringLocalizer
+@inject IHtmlLocalizer<Program> HtmlLocalizer
+@inject IViewLocalizer ViewLocalizer
+
+@model Models.User
+
+<th>
+    @Html.DisplayName(StringLocalizer[nameof(Models.User.Id)])
+</th>
+<th>
+    @*@StringLocalizer[/*encoded*/"<i>{0}</i>",  @Html.DisplayNameFor(model => model.Username)]*@
+    @HtmlLocalizer["<i>{0}</i>", /*encoded*/ @Html.DisplayNameFor(model => model.Username)]
+</th>
+<th>
+    @*<label>@nameof(Models.User.Password)</label>*@
+    @Html.Label(@ViewLocalizer[nameof(Models.User.Password)].Value)
+</th>

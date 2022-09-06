@@ -1,10 +1,4 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@using Microsoft.Extensions.Localization
-@using Models
-
-@inject IStringLocalizer<Program> StringLocalizer
-@inject IHtmlLocalizer<Program> HtmlLocalizer
-@inject IViewLocalizer ViewLocalizer
+﻿@using Models
 
 @model IEnumerable<User>
 
@@ -35,31 +29,16 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayName(StringLocalizer[nameof(Models.User.Id)])
-                </th>
-                <th>
-                    @*@StringLocalizer[/*encoded*/"<i>{0}</i>",  @Html.DisplayNameFor(model => model.Username)]*@
-                    @HtmlLocalizer["<i>{0}</i>", /*encoded*/ @Html.DisplayNameFor(model => model.Username)]
-                </th>
-                <th>
-                    @*<label>@nameof(Models.User.Password)</label>*@
-                    @Html.Label(@ViewLocalizer[nameof(Models.User.Password)].Value)
-                </th>
+                <partial name="_UserHeader" model="new Models.User()" />
             </tr>
         </thead>
         <tbody>
             @foreach (var user in @Model) {
                 <tr>
-                    <th>
-                        @Html.DisplayFor(_ => user.Id)
-                    </th>
-                    <th>
-                        @Html.DisplayFor(_ => user.Username)
-                    </th>
-                    <th>
-                        @user.Password
-                    </th>
+                    @await Html.PartialAsync("_UserBody", user)
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", "Users", new {user.Id})
+                    </td>
                 </tr>
             }
         </tbody>
