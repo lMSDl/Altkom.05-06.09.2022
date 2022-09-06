@@ -1,0 +1,13 @@
+﻿@using Models
+
+@model Models.User
+
+<th>
+    @Html.DisplayName(nameof(Models.User.Id))
+</th>
+<th>
+    @Html.DisplayNameFor(model => model.Username)
+</th>
+<th>
+    @Html.Label(nameof(Models.User.Password))
+</th>

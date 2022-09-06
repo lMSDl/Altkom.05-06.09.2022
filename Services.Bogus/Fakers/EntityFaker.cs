@@ -11,7 +11,7 @@ namespace Services.Bogus.Fakers
     {
         protected EntityFaker()
         {
-            RuleFor(x => x.Id, x => x.UniqueIndex);
+            RuleFor(x => x.Id, x => x.UniqueIndex + 1);
         }
     }
 }
