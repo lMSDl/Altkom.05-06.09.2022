@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services.Interfaces;
 
 namespace WebAppMVC.Controllers
 {
     [AutoValidateAntiforgeryToken]
+    [Authorize]
     public class UsersController : Controller
     {
         private ICrudService<User> _service;
@@ -15,6 +17,7 @@ namespace WebAppMVC.Controllers
             _service = service;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             //return View(_entities);
@@ -35,6 +38,7 @@ namespace WebAppMVC.Controllers
             return View(nameof(Index), users);
         }
 
+        [Authorize(Roles = "Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             var user = await _service.ReadAsync(id);
@@ -45,11 +49,15 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Delete")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+
+        [Authorize(Roles = "Add")]
         public async Task<IActionResult> Add()
         {
             await Task.Yield();
@@ -57,7 +65,8 @@ namespace WebAppMVC.Controllers
          }
 
 
-            public async Task<IActionResult> Edit(int id)
+        [Authorize(Roles = "Edit")]
+        public async Task<IActionResult> Edit(int id)
         {
             var user = await _service.ReadAsync(id);
             if (user == null)
@@ -67,6 +76,7 @@ namespace WebAppMVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Edit, Add")]
         //public async Task<IActionResult> EditUser(int id, string username, string password)
         //public async Task<IActionResult> EditUser(int id, [Bind] User user)
         public async Task<IActionResult> EditUser(int id, [Bind("Username", "Password")]User user)

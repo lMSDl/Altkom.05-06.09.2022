@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Models;
@@ -5,6 +6,7 @@ using Services.Interfaces;
 
 namespace WebAppRazor.Pages.Users
 {
+    [Authorize(Roles = "Edit")]
     public class AddOrEditModel : UserPageModel
     {
         public AddOrEditModel(ICrudService<User> service) : base(service)

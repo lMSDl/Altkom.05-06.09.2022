@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.FileProviders;
 using Models;
@@ -26,6 +27,14 @@ builder.Services.Configure<RequestLocalizationOptions>(x =>
     //x.RequestCultureProviders.RemoveAt(0);
 });
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(x =>
+    {
+        x.LoginPath = "/Login";
+        x.LogoutPath = "/Login/Logout";
+        x.AccessDeniedPath = "/";
+        x.ExpireTimeSpan = TimeSpan.FromSeconds(30);
+    });
 
 var app = builder.Build();
 
@@ -56,6 +65,7 @@ app.UseRequestLocalization();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 
