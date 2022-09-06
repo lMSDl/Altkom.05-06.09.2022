@@ -13,6 +13,13 @@ namespace Services.Bogus
 
         private ICollection<T> Entities { get; }
 
+        public Task<int> CreateAsync(T entity)
+        {
+            entity.Id = Entities.Max(x => x.Id) + 1;
+            Entities.Add(entity);
+            return Task.FromResult(entity.Id);
+        }
+
         public Task DeleteAsync(int id)
         {
             Entities.Remove(Entities.SingleOrDefault(x => x.Id == id)!);
@@ -27,6 +34,13 @@ namespace Services.Bogus
         public Task<IEnumerable<T>> ReadAsync()
         {
             return Task.FromResult(Entities.AsEnumerable());
+        }
+
+        public async Task UpdateAsync(int id, T entity)
+        {
+            entity.Id = id;
+            await DeleteAsync(id);
+            Entities.Add(entity);
         }
     }
 }
