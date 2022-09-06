@@ -15,9 +15,16 @@
 
 <div>
     @using(Html.BeginForm("search", "users")) {
-        @:Phrase @Html.TextBox("phrase") <br>
+        @:Phrase @Html.TextBox("phrase")
         <input type="submit" value="Search" class="btn" />
+
+        @*@Html.AntiForgeryToken();*@
     }
+
+    @*<form asp-action="search" asp-antiforgery="false">
+        <input type="text" name="phrase" />
+        <input type="submit" value="Search" class="btn" />
+    </form>*@
 </div>
 
 @*@foreach(var user in @Model) {
